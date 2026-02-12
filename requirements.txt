@@ -1,0 +1,14 @@
+requests
+beautifulsoup4
+pandas
+numpy
+scikit-learn
+textblob
+python-dateutil
+flask
+click
+aiohttp
+asyncio
+gitpython
+openai
+json5
