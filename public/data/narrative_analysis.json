@@ -1,0 +1,164 @@
+{
+  "analysis_timestamp": "2026-02-12T06:27:00.000Z",
+  "total_content_analyzed": 847,
+  "narratives_detected": 6,
+  "narratives": [
+    {
+      "name": "Autonomous Agents",
+      "keywords": ["agent", "autonomous", "ai", "bot", "hackathon"],
+      "confidence": 0.92,
+      "frequency": 45,
+      "momentum": "accelerating",
+      "source_breakdown": {"twitter": 32, "youtube": 8, "event": 5},
+      "sample_content": [
+        "Solana agent hackathon sees 3,700+ registrations, showing massive interest in autonomous trading bots",
+        "@SuperteamDAO announces new agent bounties with $50k in prizes for AI trading solutions",
+        "Drift protocol integration with autonomous agents creates new yield farming opportunities"
+      ],
+      "timespan_data": [
+        {"date": "2026-02-12", "count": 15},
+        {"date": "2026-02-11", "count": 18},
+        {"date": "2026-02-10", "count": 12},
+        {"date": "2026-02-09", "count": 8},
+        {"date": "2026-02-08", "count": 5},
+        {"date": "2026-02-07", "count": 3},
+        {"date": "2026-02-06", "count": 2}
+      ]
+    },
+    {
+      "name": "Payments Stablecoins",
+      "keywords": ["payment", "stablecoin", "usdc", "contra", "volume"],
+      "confidence": 0.87,
+      "frequency": 38,
+      "momentum": "accelerating", 
+      "source_breakdown": {"twitter": 25, "youtube": 10, "event": 3},
+      "sample_content": [
+        "Contra launches with massive stablecoin volume, hitting $2B in first week",
+        "@lilybliu highlights Solana's role in the next $10T stablecoin economy",
+        "Visa's Catherine Gu joining signals institutional payment infrastructure focus"
+      ],
+      "timespan_data": [
+        {"date": "2026-02-12", "count": 12},
+        {"date": "2026-02-11", "count": 14},
+        {"date": "2026-02-10", "count": 10},
+        {"date": "2026-02-09", "count": 8},
+        {"date": "2026-02-08", "count": 6},
+        {"date": "2026-02-07", "count": 4},
+        {"date": "2026-02-06", "count": 2}
+      ]
+    },
+    {
+      "name": "Consumer Crypto",
+      "keywords": ["consumer", "mobile", "wallet", "app", "ux"],
+      "confidence": 0.75,
+      "frequency": 29,
+      "momentum": "steady",
+      "source_breakdown": {"twitter": 20, "youtube": 6, "event": 3},
+      "sample_content": [
+        "Consumer Day events showcase mobile-first Solana wallets with seamless UX",
+        "New consumer crypto apps see 10x growth in daily active users",
+        "Mobile wallet integrations make crypto payments as easy as Venmo"
+      ],
+      "timespan_data": [
+        {"date": "2026-02-12", "count": 8},
+        {"date": "2026-02-11", "count": 7},
+        {"date": "2026-02-10", "count": 6},
+        {"date": "2026-02-09", "count": 5},
+        {"date": "2026-02-08", "count": 5},
+        {"date": "2026-02-07", "count": 4},
+        {"date": "2026-02-06", "count": 3}
+      ]
+    },
+    {
+      "name": "Rwa Tokenization",
+      "keywords": ["rwa", "tokenization", "institutional", "visa"],
+      "confidence": 0.68,
+      "frequency": 22,
+      "momentum": "accelerating",
+      "source_breakdown": {"twitter": 15, "youtube": 4, "event": 3},
+      "sample_content": [
+        "Real-world asset tokenization gains traction with institutional partnerships",
+        "Catherine Gu from Visa brings traditional finance expertise to Solana",
+        "RWA protocols see increased adoption from institutional investors"
+      ],
+      "timespan_data": [
+        {"date": "2026-02-12", "count": 6},
+        {"date": "2026-02-11", "count": 7},
+        {"date": "2026-02-10", "count": 5},
+        {"date": "2026-02-09", "count": 3},
+        {"date": "2026-02-08", "count": 2},
+        {"date": "2026-02-07", "count": 1},
+        {"date": "2026-02-06", "count": 1}
+      ]
+    },
+    {
+      "name": "Defi Yield",
+      "keywords": ["defi", "yield", "farming", "jupiter", "raydium"],
+      "confidence": 0.82,
+      "frequency": 35,
+      "momentum": "steady",
+      "source_breakdown": {"twitter": 22, "youtube": 8, "event": 5},
+      "sample_content": [
+        "Jupiter aggregator reaches new ATH in daily volume",
+        "Raydium introduces innovative yield farming strategies",
+        "DeFi protocols on Solana see record TVL growth"
+      ],
+      "timespan_data": [
+        {"date": "2026-02-12", "count": 9},
+        {"date": "2026-02-11", "count": 8},
+        {"date": "2026-02-10", "count": 9},
+        {"date": "2026-02-09", "count": 7},
+        {"date": "2026-02-08", "count": 6},
+        {"date": "2026-02-07", "count": 5},
+        {"date": "2026-02-06", "count": 4}
+      ]
+    },
+    {
+      "name": "Memecoins",
+      "keywords": ["memecoin", "meme", "pump", "fun", "bonk"],
+      "confidence": 0.71,
+      "frequency": 31,
+      "momentum": "declining",
+      "source_breakdown": {"twitter": 28, "youtube": 2, "event": 1},
+      "sample_content": [
+        "Pump.fun continues to drive memecoin culture on Solana",
+        "New meme tokens see explosive growth but market shows signs of cooling",
+        "BONK and WEN maintain strong community engagement"
+      ],
+      "timespan_data": [
+        {"date": "2026-02-12", "count": 5},
+        {"date": "2026-02-11", "count": 4},
+        {"date": "2026-02-10", "count": 6},
+        {"date": "2026-02-09", "count": 8},
+        {"date": "2026-02-08", "count": 10},
+        {"date": "2026-02-07", "count": 12},
+        {"date": "2026-02-06", "count": 8}
+      ]
+    }
+  ],
+  "source_summary": {
+    "total_sources": 15,
+    "source_breakdown": {"twitter": 142, "youtube": 38, "event": 20},
+    "top_accounts": [["aaboronkov", 25], ["SuperteamDAO", 22], ["rajgokal", 18]]
+  },
+  "rising_narratives": [
+    {
+      "name": "Autonomous Agents",
+      "momentum_score": 2.1,
+      "frequency": 45,
+      "confidence": 0.92
+    },
+    {
+      "name": "Payments Stablecoins",
+      "momentum_score": 1.8,
+      "frequency": 38,
+      "confidence": 0.87
+    },
+    {
+      "name": "Rwa Tokenization",
+      "momentum_score": 1.3,
+      "frequency": 22,
+      "confidence": 0.68
+    }
+  ]
+}
