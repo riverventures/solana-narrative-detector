@@ -32,11 +32,25 @@ Raw Signals → Aggregation → Clustering → Scoring → Ideas → Output
 pip install -r requirements.txt
 
 # Run narrative detection
-python src/main.py detect
+python3 src/main.py detect
 
-# Start web dashboard
-python src/main.py serve
+# Start web dashboard (Flask server)
+python3 src/main.py serve --port 8080
+
+# Or open static dashboard
+open web/index.html
 ```
+
+## Demo
+
+🌐 **Live Demo**: [GitHub Pages](https://riverventures.github.io/solana-narrative-detector/)
+📊 **Sample Report**: [data/narratives-demo.json](data/narratives-demo.json)
+
+### Latest Detection Results (Feb 12, 2026)
+
+**Detected Narratives:**
+1. **Emerging: Solana** (97% confidence) - Strong ecosystem growth signals
+2. **Memecoins & Culture** (55% confidence) - pump.fun and meme trends
 
 ## Output Example
 

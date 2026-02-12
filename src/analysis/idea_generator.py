@@ -140,6 +140,16 @@ class IdeaGenerator:
                     )
                     filled_template = filled_template.replace(placeholder, chosen_option)
             
+            # Replace any remaining unreplaced placeholders with generic alternatives
+            import re
+            filled_template = re.sub(r'{[^}]+}', lambda m: {
+                '{monetization_method}': 'subscription model',
+                '{governance_feature}': 'community voting',
+                '{trend_category}': 'crypto trends',
+                '{community_aspect}': 'social features',
+                '{target_audience}': 'retail traders'
+            }.get(m.group(), 'innovative features'), filled_template)
+            
             ideas.append(filled_template)
         
         return ideas
