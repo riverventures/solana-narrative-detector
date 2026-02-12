@@ -1,101 +1,223 @@
-# Deployment Guide
+# Deployment Guide - Solana Narrative Detector v2
 
-## 🚀 Live Demo
+This guide covers deploying the Solana Narrative Detector v2 to various platforms.
 
-**GitHub Repository**: https://github.com/riverventures/solana-narrative-detector
-**Static Dashboard**: Open `web/index.html` in any browser
-**Sample Data**: `data/narratives-demo.json`
+## 🚀 Quick Deploy
 
-## Superteam Earn Bounty Submission
-
-### ✅ Requirements Met
-
-1. **Signal Monitoring**: 
-   - ✅ GitHub API (Solana repos, commits, stars)
-   - ✅ Social signals (KOL monitoring via Twitter)
-   - ✅ Market reports (Electric Capital, Messari, Helius)
-   - ✅ Web scraping capabilities
-
-2. **Narrative Detection**: 
-   - ✅ AI-powered clustering
-   - ✅ Momentum scoring
-   - ✅ Fortnightly refresh capability
-
-3. **Output Format**:
-   - ✅ Narrative explanations
-   - ✅ 3-5 concrete product ideas per narrative
-   - ✅ JSON + Markdown + Web dashboard
-
-### 📊 Demo Results (Feb 12, 2026)
-
-**2 Narratives Detected:**
-1. **Emerging: Solana** - 97% confidence, 0.91 momentum
-2. **Memecoins & Culture** - 55% confidence, 0.61 momentum
-
-## Hosting Options
-
-### Option 1: Vercel (Recommended)
+### Vercel (Recommended)
 ```bash
 # Install Vercel CLI
 npm i -g vercel
 
-# Deploy static dashboard
-cd web/
+# Deploy
+vercel
+
+# Set up custom domain (optional)
 vercel --prod
 ```
 
-### Option 2: GitHub Pages
+### Heroku
 ```bash
-# Enable GitHub Pages on the repository
-# Point to /web folder
-# Access at: https://riverventures.github.io/solana-narrative-detector/
+# Create Heroku app
+heroku create solana-narrative-detector
+
+# Add Python buildpack
+heroku buildpacks:add heroku/python
+
+# Deploy
+git push heroku main
 ```
 
-### Option 3: Local Development
+### Docker
 ```bash
-# Flask server
-python3 src/main.py serve --port 8080
+# Build image
+docker build -t solana-narrative-detector .
 
-# Or simple HTTP server for static files
-cd web/ && python3 -m http.server 8080
+# Run locally
+docker run -p 8000:8000 solana-narrative-detector
+
+# Deploy to any container platform
 ```
 
-## Production Considerations
+## 🔧 Local Development
 
-### API Rate Limits
-- GitHub CLI: 5000 requests/hour (authenticated)
-- Twitter/X: Rate limited via `bird` CLI
-- Web scraping: Implement delays between requests
+### Prerequisites
+1. **Python 3.11+**
+2. **bird CLI** for Twitter data
+   ```bash
+   # macOS
+   brew install bird
+   
+   # Linux/Windows
+   # Visit: https://github.com/travisbrown/bird
+   ```
+
+### Setup
+```bash
+# Clone repository
+git clone https://github.com/riverventures/solana-narrative-detector
+cd solana-narrative-detector
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run detection pipeline
+python main.py detect
+
+# Start web server
+python main.py server
+```
+
+### Environment Variables
+```bash
+# Optional: Set bird CLI path
+export BIRD_PATH=/usr/local/bin/bird
+
+# Optional: Set data refresh interval (seconds)
+export REFRESH_INTERVAL=3600
+```
+
+## 📊 Monitoring and Scaling
+
+### Health Checks
+The application provides a health check endpoint:
+```
+GET /health
+```
 
 ### Performance
-- Signal collection: ~30 seconds
-- Analysis: ~5 seconds  
-- Report generation: <1 second
-- Total runtime: ~40 seconds
+- **Memory**: ~500MB baseline
+- **CPU**: Low, spikes during analysis
+- **Storage**: Minimal (< 100MB for data files)
 
-### Scaling
-- Add database for historical data
-- Implement caching for API responses
-- Use proper web search APIs (not mocked)
-- Add real-time WebSocket updates
+### Scaling Considerations
+1. **Rate Limiting**: bird CLI has Twitter API limits
+2. **Data Size**: Grows linearly with content volume
+3. **Analysis Time**: ~30-60 seconds for full pipeline
 
-## Architecture
+## 🔒 Security
 
+### API Security
+- No authentication required for read-only endpoints
+- POST endpoints should be rate-limited in production
+- Consider adding API keys for private deployments
+
+### Data Privacy
+- No personal data stored
+- Only public social media content processed
+- All data is aggregated and anonymized
+
+## 📈 Production Configuration
+
+### Nginx Configuration
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+    
+    # Cache static assets
+    location /static/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+}
 ```
-Data Sources → Signal Aggregation → Narrative Clustering → Idea Generation → Output
-     ↓              ↓                      ↓                     ↓          ↓
-  GitHub        Raw Signals         Themed Clusters      Product Ideas    JSON/Web
-  Twitter       Report Data         Momentum Scores      Context-Aware    Dashboard  
-  Web Reports   Social Mentions     Confidence Calc      Templates        Reports
+
+### Systemd Service
+```ini
+[Unit]
+Description=Solana Narrative Detector
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/app
+Environment=PATH=/usr/local/bin
+ExecStart=/usr/local/bin/python server.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 ```
 
-## Bounty Differentiators
+## 🔄 Continuous Deployment
 
-1. **Real Working Tool** - Not a concept, actually detects narratives
-2. **Multi-Signal Sources** - GitHub + Social + Reports
-3. **Smart Clustering** - AI-powered narrative detection 
-4. **Quality Ideas** - Context-aware product suggestions
-5. **Professional Output** - Clean JSON + Web dashboard
-6. **Novel Insights** - Focus on signal quality over volume
+### GitHub Actions
+```yaml
+name: Deploy to Production
+on:
+  push:
+    branches: [main]
 
-Built by Sterling Rhodes for Superteam Earn bounty - February 2026
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **bird CLI not found**
+   ```bash
+   # Check installation
+   which bird
+   bird --version
+   ```
+
+2. **Python dependencies conflict**
+   ```bash
+   # Use virtual environment
+   python -m venv venv
+   source venv/bin/activate
+   pip install -r requirements.txt
+   ```
+
+3. **NLTK data missing**
+   ```bash
+   python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+   ```
+
+4. **Port already in use**
+   ```bash
+   # Find and kill process
+   lsof -i :8000
+   kill -9 <PID>
+   ```
+
+### Log Analysis
+```bash
+# Check application logs
+tail -f /var/log/solana-narrative-detector.log
+
+# Check system resources
+htop
+df -h
+```
+
+## 📞 Support
+
+For deployment issues:
+1. Check the GitHub Issues page
+2. Review error logs carefully
+3. Ensure all prerequisites are installed
+4. Contact: http://t.me/afscott
+
+---
+
+**Built by Sterling Rhodes for Superteam Earn**
